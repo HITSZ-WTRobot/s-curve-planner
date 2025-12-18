@@ -1,6 +1,9 @@
 # UserCode/CMakeLists.txt
 cmake_minimum_required(VERSION 3.21)
-project(s_curve)
+
+set(LIB_NAME s_curve)
+
+project(${LIB_NAME})
 
 # 导库方式
 # add_subdirectory({project_path}/UserCode)
@@ -33,13 +36,16 @@ set(DRIVER_MACROS "")
 # ---------------------------------------------------------------------------
 # create static library
 # ---------------------------------------------------------------------------
-add_library(${PROJECT_NAME} STATIC ${ALL_SOURCES})
+add_library(s_curve STATIC ${ALL_SOURCES})
+if (NOT TARGET ${LIB_NAME})
+    message(FATAL_ERROR "target ${LIB_NAME} not created")
+endif ()
 
 # ---------------------------------------------------------------------------
 # compile definitions
 # ---------------------------------------------------------------------------
 if (DRIVER_MACROS)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC ${DRIVER_MACROS})
+    target_compile_definitions(${LIB_NAME} PUBLIC ${DRIVER_MACROS})
 endif ()
 
 # ---------------------------------------------------------------------------
@@ -47,7 +53,7 @@ endif ()
 # ---------------------------------------------------------------------------
 set(EXPORT_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include)
 file(MAKE_DIRECTORY ${EXPORT_INCLUDE_DIR})
-target_include_directories(${PROJECT_NAME} PUBLIC ${EXPORT_INCLUDE_DIR})
+target_include_directories(${LIB_NAME} PUBLIC ${EXPORT_INCLUDE_DIR})
 
 # ---------------------------------------------------------------------------
 # copy selected headers
