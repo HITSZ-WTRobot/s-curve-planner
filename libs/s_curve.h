@@ -30,6 +30,7 @@ extern "C"
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <string.h>
 
 // 最大二分查找误差
 #ifndef S_CURVE_MAX_BS_ERROR
@@ -106,6 +107,11 @@ SCurve_Result_t SCurve_Init(
 float SCurve_CalcX(const SCurve_t* s, float t);
 float SCurve_CalcV(const SCurve_t* s, float t);
 float SCurve_CalcA(const SCurve_t* s, float t);
+
+static void SCurve_Reset(SCurve_t* s)
+{
+    memset(s, 0, sizeof(SCurve_t));
+}
 
 #ifdef __cplusplus
 }
