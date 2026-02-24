@@ -1,5 +1,7 @@
 # SCurve
 
+!IMPORTANT 本仓库已经停止维护，请移步 https://github.com/HITSZ-WTRobot-Packages/VelocityProfile
+
 带初值的速度、加速度和加加速度限制曲线路径规划库
 
 ## 注意
